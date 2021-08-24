@@ -205,6 +205,8 @@ dependencies {
     }
 
     implementation project(':reactnativeyandexmobileads')
+    implementation 'com.yandex.android:mobileads:4.2.0'
+    implementation 'com.yandex.android:mobmetricalib:3.20.1'
 }
 
 // Run this once to be able to run the application with BUCK

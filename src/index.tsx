@@ -6,4 +6,5 @@ type YandexMobileAdsType = {
 
 const { YandexMobileAds } = NativeModules;
 
+export { default as BannerView } from './BannerView';
 export default YandexMobileAds as YandexMobileAdsType;
