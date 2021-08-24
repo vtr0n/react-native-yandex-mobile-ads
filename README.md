@@ -32,6 +32,7 @@ Link the native dependencies:
 ```bash
 $ react-native link react-native-yandex-mobile-ads
 ```
+</details>
 
 ## Usage
 
