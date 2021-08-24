@@ -11,11 +11,17 @@ npm install react-native-yandex-mobile-ads
 ## Usage
 
 ```js
-import YandexMobileAds from "react-native-yandex-mobile-ads";
-
+import { BannerView } from 'react-native-yandex-mobile-ads';
 // ...
 
-const result = await YandexMobileAds.multiply(3, 7);
+<BannerView
+  blockId={'R-M-DEMO-300x300'}
+  size="BANNER_320x50"
+  onLoad={() => console.log('onLoad')}
+  onLeftApplication={() => console.log('onLeftApplication')}
+  onReturnedToApplication={() => console.log('onReturnedToApplication')}
+  onError={(err: any) => console.log('error', err)}
+/>
 ```
 
 ## Contributing

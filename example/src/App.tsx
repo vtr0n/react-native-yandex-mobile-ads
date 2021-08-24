@@ -1,31 +1,29 @@
-import * as React from 'react';
+import React, { Component } from 'react';
+import { StyleSheet, View } from 'react-native';
+import { BannerView } from 'react-native-yandex-mobile-ads';
 
-import { StyleSheet, View, Text } from 'react-native';
-import YandexMobileAds from 'react-native-yandex-mobile-ads';
-
-export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    YandexMobileAds.multiply(3, 7).then(setResult);
-  }, []);
-
-  return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
-    </View>
-  );
+export default class BannerAd extends Component {
+  render() {
+    return (
+      <View style={styles.bannerContainer}>
+        <BannerView
+          blockId={'R-M-DEMO-300x300'}
+          size="BANNER_320x50"
+          onLoad={() => console.log('onLoad')}
+          onLeftApplication={() => console.log('onLeftApplication')}
+          onReturnedToApplication={() => console.log('onReturnedToApplication')}
+          onError={(err: any) => console.log('error', err)}
+        />
+      </View>
+    );
+  }
 }
 
-const styles = StyleSheet.create({
+let styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
   },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
+  bannerContainer: {
+    marginVertical: 10,
   },
 });
