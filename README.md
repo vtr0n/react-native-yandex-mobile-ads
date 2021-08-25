@@ -36,9 +36,8 @@ $ react-native link react-native-yandex-mobile-ads
 
 ## Usage
 
-```js
-import { BannerView } from 'react-native-yandex-mobile-ads';
-// ...
+```tsx
+import { BannerView, InterstitialAdManager } from 'react-native-yandex-mobile-ads';
 
 <BannerView
   blockId={'R-M-DEMO-300x250'}
@@ -48,6 +47,14 @@ import { BannerView } from 'react-native-yandex-mobile-ads';
   onReturnedToApplication={() => console.log('onReturnedToApplication')}
   onError={(err: any) => console.log('error', err)}
 />
+
+InterstitialAdManager.showAd('R-M-DEMO-320x480')
+  .then((didClick: boolean) => {
+    console.log('clicked: ' + didClick);
+  })
+  .catch((error: any) => {
+    console.log('error: ' + error);
+  });
 ```
 
 ## Contributing
