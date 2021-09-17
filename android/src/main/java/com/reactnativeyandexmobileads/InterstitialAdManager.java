@@ -34,15 +34,13 @@ public class InterstitialAdManager extends ReactContextBaseJavaModule implements
 
     ReactApplicationContext reactContext = this.getReactApplicationContext();
     mInterstitial = new InterstitialAd(reactContext);
+    mInterstitial.setBlockId(blockId);
     mInterstitial.setInterstitialAdEventListener(this);
 
     mViewAtOnce = true;
     mPromise = p;
 
-    final AdRequest adRequest = new AdRequest.Builder().build();
-    mInterstitial.setBlockId(blockId);
-
-    mInterstitial.loadAd(adRequest);
+    mInterstitial.loadAd(new AdRequest.Builder().build());
   }
 
   @Override
