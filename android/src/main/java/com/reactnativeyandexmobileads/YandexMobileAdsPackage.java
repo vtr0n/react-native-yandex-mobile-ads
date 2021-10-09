@@ -17,6 +17,7 @@ public class YandexMobileAdsPackage implements ReactPackage {
     public List<NativeModule> createNativeModules(@NonNull ReactApplicationContext reactContext) {
         List<NativeModule> modules = new ArrayList<>();
         modules.add(new InterstitialAdManager(reactContext));
+        modules.add(new RewardedAdManager(reactContext));
         return modules;
     }
 
