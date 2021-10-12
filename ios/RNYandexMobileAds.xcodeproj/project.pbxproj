@@ -6,6 +6,10 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		1A5570542715789800030BE8 /* RewardedAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5570532715789800030BE8 /* RewardedAdManager.m */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		58B511D91A9E6C8500147676 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -20,6 +24,8 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libRNYandexMobileAds.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNYandexMobileAds.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A5570522715789800030BE8 /* RewardedAdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RewardedAdManager.h; sourceTree = "<group>"; };
+		1A5570532715789800030BE8 /* RewardedAdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RewardedAdManager.m; sourceTree = "<group>"; };
 		1A66DD8626D53B8E0082DD0E /* BannerViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BannerViewManager.m; sourceTree = "<group>"; };
 		1A66DD8726D53BA20082DD0E /* BannerViewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BannerViewManager.h; sourceTree = "<group>"; };
 		B3E7B5881CC2AC0600A0062D /* BannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerView.h; sourceTree = "<group>"; };
@@ -48,6 +54,8 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				1A5570522715789800030BE8 /* RewardedAdManager.h */,
+				1A5570532715789800030BE8 /* RewardedAdManager.m */,
 				1A66DD8726D53BA20082DD0E /* BannerViewManager.h */,
 				1A66DD8626D53B8E0082DD0E /* BannerViewManager.m */,
 				B3E7B5881CC2AC0600A0062D /* BannerView.h */,
@@ -113,6 +121,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A5570542715789800030BE8 /* RewardedAdManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
