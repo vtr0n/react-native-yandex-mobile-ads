@@ -53,8 +53,11 @@ repositories {
 }
 
 dependencies {
-    //noinspection GradleDynamicVersion
-    implementation "com.facebook.react:react-native:+"  // From node_modules
-    implementation 'com.yandex.android:mobileads:4.3.0'
-    implementation 'com.yandex.android:mobmetricalib:3.20.1'
+  def mobileadsVersion = safeExtGet('YandexMobileAds_mobileadsVersion', '4.3.0')
+  def mobmetrikaVersion = safeExtGet('YandexMobileAds_mobmetrikaVersion', '3.20.1')
+
+  //noinspection GradleDynamicVersion
+  implementation "com.facebook.react:react-native:+"  // From node_modules
+  implementation "com.yandex.android:mobileads:$mobileadsVersion"
+  implementation "com.yandex.android:mobmetricalib:$mobmetrikaVersion"
 }
