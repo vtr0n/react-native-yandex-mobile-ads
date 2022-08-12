@@ -27,7 +27,7 @@ public class RewardedAdManager extends ReactContextBaseJavaModule implements Rew
   }
 
   @ReactMethod
-  public void showAd(String blockId, Promise p) {
+  public void showAd(String adUnitId, Promise p) {
     if (mPromise != null) {
       p.reject("E_FAILED_TO_SHOW", "Only one `showAd` can be called at once");
       return;
@@ -35,7 +35,7 @@ public class RewardedAdManager extends ReactContextBaseJavaModule implements Rew
 
     ReactApplicationContext reactContext = this.getReactApplicationContext();
     mRewarded = new RewardedAd(reactContext);
-    mRewarded.setBlockId(blockId);
+    mRewarded.setAdUnitId(adUnitId);
     mRewarded.setRewardedAdEventListener(this);
 
     mViewAtOnce = true;

@@ -11,7 +11,7 @@ type AdType =
 
 interface NativeBannerViewProps {
   size: string;
-  blockId: string;
+  adUnitId: string;
   onError?: Function;
   onLoad?: Function;
   onLeftApplication?: Function;
@@ -21,7 +21,7 @@ interface NativeBannerViewProps {
 
 interface BannerViewProps {
   size: AdType;
-  blockId: string;
+  adUnitId: string;
   onError?: Function;
   onLoad?: Function;
   onLeftApplication?: Function;
@@ -56,7 +56,7 @@ const getWidthForType = (type: AdType) => getWidth[type];
 const BannerView = (props: BannerViewProps) => {
   const {
     size,
-    blockId,
+    adUnitId,
     onError,
     onLoad,
     onLeftApplication,
@@ -69,7 +69,7 @@ const BannerView = (props: BannerViewProps) => {
 
   return (
     <RNBannerView
-      blockId={blockId}
+      adUnitId={adUnitId}
       size={size}
       onError={onError}
       onLoad={onLoad}

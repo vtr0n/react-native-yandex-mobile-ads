@@ -28,7 +28,7 @@ RCT_EXPORT_MODULE(InterstitialAdManager)
 }
 
 RCT_EXPORT_METHOD(
-                  showAd:(NSString *)blockId
+                  showAd:(NSString *)adUnitId
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject
                   )
@@ -39,7 +39,7 @@ RCT_EXPORT_METHOD(
     _resolve = resolve;
     _reject = reject;
 
-    _interstitialAd = [[YMAInterstitialAd alloc] initWithBlockID:blockId];
+    _interstitialAd = [[YMAInterstitialAd alloc] initWithAdUnitID:adUnitId];
     _interstitialAd.delegate = self;
     _showWhenLoaded = true;
 

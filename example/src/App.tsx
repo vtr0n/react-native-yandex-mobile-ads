@@ -12,7 +12,7 @@ export default class BannerAd extends Component {
       <View style={styles.container}>
         <View style={styles.bannerContainer}>
           <BannerView
-            blockId={'R-M-DEMO-300x250'}
+            adUnitId={'R-M-DEMO-300x250'}
             size="BANNER_300x250"
             onLoad={() => console.log('onLoad')}
             onLeftApplication={() => console.log('onLeftApplication')}

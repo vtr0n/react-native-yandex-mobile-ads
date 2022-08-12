@@ -23,7 +23,7 @@ import com.yandex.mobile.ads.common.AdRequestError;
 public class BannerView extends ReactViewGroup implements BannerAdEventListener, LifecycleEventListener {
   private ReactContext mContext;
   private BannerAdView myAdView;
-  private String mBlockId;
+  private String mAdUnitId;
   private AdSize mSize;
   private RCTEventEmitter mEventEmitter;
 
@@ -34,8 +34,8 @@ public class BannerView extends ReactViewGroup implements BannerAdEventListener,
     mEventEmitter = mContext.getJSModule(RCTEventEmitter.class);
   }
 
-  public void setBlockId(String blockId) {
-    mBlockId = blockId;
+  public void setAdUnitId(String adUnitId) {
+    mAdUnitId = adUnitId;
     createAdViewIfCan();
   }
 
@@ -45,10 +45,10 @@ public class BannerView extends ReactViewGroup implements BannerAdEventListener,
   }
 
   private void createAdViewIfCan() {
-    if (myAdView == null && mBlockId != null && mSize != null) {
+    if (myAdView == null && mAdUnitId != null && mSize != null) {
       this.myAdView = new BannerAdView(getContext());
 
-      myAdView.setBlockId(mBlockId);
+      myAdView.setAdUnitId(mAdUnitId);
       myAdView.setAdSize(mSize);
 
       // Создание объекта таргетирования рекламы.

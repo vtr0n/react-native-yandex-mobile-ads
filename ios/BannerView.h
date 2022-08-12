@@ -9,6 +9,6 @@
 @property (nonatomic, copy) RCTBubblingEventBlock onReturnedToApplication;
 
 @property (nonatomic, strong) NSString *size;
-@property (nonatomic, strong) NSString *blockId;
+@property (nonatomic, strong) NSString *adUnitId;
 
 @end
