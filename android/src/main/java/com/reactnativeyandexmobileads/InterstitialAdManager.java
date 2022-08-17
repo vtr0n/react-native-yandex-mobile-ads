@@ -11,6 +11,7 @@ import com.yandex.mobile.ads.common.AdRequest;
 import com.yandex.mobile.ads.common.AdRequestError;
 import com.yandex.mobile.ads.interstitial.InterstitialAd;
 import com.yandex.mobile.ads.interstitial.InterstitialAdEventListener;
+import com.yandex.mobile.ads.common.ImpressionData;
 
 public class InterstitialAdManager extends ReactContextBaseJavaModule implements InterstitialAdEventListener, LifecycleEventListener {
 
@@ -66,6 +67,16 @@ public class InterstitialAdManager extends ReactContextBaseJavaModule implements
 
   @Override
   public void onHostPause() {
+
+  }
+
+  @Override
+  public void onImpression(ImpressionData impressionData)  {
+
+  }
+
+  @Override
+  public void onAdClicked() {
 
   }
 

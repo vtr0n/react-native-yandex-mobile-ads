@@ -12,6 +12,7 @@ import com.yandex.mobile.ads.common.AdRequestError;
 import com.yandex.mobile.ads.rewarded.Reward;
 import com.yandex.mobile.ads.rewarded.RewardedAd;
 import com.yandex.mobile.ads.rewarded.RewardedAdEventListener;
+import com.yandex.mobile.ads.common.ImpressionData;
 
 public class RewardedAdManager extends ReactContextBaseJavaModule implements RewardedAdEventListener, LifecycleEventListener {
 
@@ -67,6 +68,16 @@ public class RewardedAdManager extends ReactContextBaseJavaModule implements Rew
 
   @Override
   public void onHostPause() {
+
+  }
+
+  @Override
+  public void onImpression(ImpressionData impressionData)  {
+
+  }
+
+  @Override
+  public void onAdClicked() {
 
   }
 

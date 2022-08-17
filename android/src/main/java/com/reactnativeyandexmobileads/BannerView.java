@@ -18,6 +18,7 @@ import com.yandex.mobile.ads.banner.BannerAdEventListener;
 import com.yandex.mobile.ads.banner.BannerAdView;
 import com.yandex.mobile.ads.common.AdRequest;
 import com.yandex.mobile.ads.common.AdRequestError;
+import com.yandex.mobile.ads.common.ImpressionData;
 
 
 public class BannerView extends ReactViewGroup implements BannerAdEventListener, LifecycleEventListener {
@@ -69,6 +70,16 @@ public class BannerView extends ReactViewGroup implements BannerAdEventListener,
 
   @Override
   public void onHostPause() {
+
+  }
+
+  @Override
+  public void onImpression(ImpressionData impressionData)  {
+
+  }
+
+  @Override
+  public void onAdClicked() {
 
   }
 
