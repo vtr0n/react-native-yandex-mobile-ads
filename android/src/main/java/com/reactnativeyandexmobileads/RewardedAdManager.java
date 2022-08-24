@@ -2,16 +2,19 @@ package com.reactnativeyandexmobileads;
 
 import androidx.annotation.NonNull;
 
+import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.LifecycleEventListener;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.WritableMap;
 import com.yandex.mobile.ads.common.AdRequest;
 import com.yandex.mobile.ads.common.AdRequestError;
 import com.yandex.mobile.ads.rewarded.Reward;
 import com.yandex.mobile.ads.rewarded.RewardedAd;
 import com.yandex.mobile.ads.rewarded.RewardedAdEventListener;
+import com.yandex.mobile.ads.common.ImpressionData;
 
 public class RewardedAdManager extends ReactContextBaseJavaModule implements RewardedAdEventListener, LifecycleEventListener {
 
@@ -27,7 +30,7 @@ public class RewardedAdManager extends ReactContextBaseJavaModule implements Rew
   }
 
   @ReactMethod
-  public void showAd(String blockId, Promise p) {
+  public void showAd(String adUnitId, Promise p) {
     if (mPromise != null) {
       p.reject("E_FAILED_TO_SHOW", "Only one `showAd` can be called at once");
       return;
@@ -35,7 +38,7 @@ public class RewardedAdManager extends ReactContextBaseJavaModule implements Rew
 
     ReactApplicationContext reactContext = this.getReactApplicationContext();
     mRewarded = new RewardedAd(reactContext);
-    mRewarded.setBlockId(blockId);
+    mRewarded.setAdUnitId(adUnitId);
     mRewarded.setRewardedAdEventListener(this);
 
     mViewAtOnce = true;
@@ -71,6 +74,16 @@ public class RewardedAdManager extends ReactContextBaseJavaModule implements Rew
   }
 
   @Override
+  public void onImpression(ImpressionData impressionData)  {
+
+  }
+
+  @Override
+  public void onAdClicked() {
+      mDidClick = true;
+  }
+
+  @Override
   public void onHostDestroy() {
     cleanUp();
   }
@@ -100,13 +113,18 @@ public class RewardedAdManager extends ReactContextBaseJavaModule implements Rew
 
   @Override
   public void onRewarded(@NonNull Reward reward) {
-    mPromise.resolve(mDidClick);
+    WritableMap event = Arguments.createMap();
+
+    event.putInt("amount", reward.getAmount());
+    event.putString("type", reward.getType());
+    event.putBoolean("click", mDidClick);
+
+    mPromise.resolve(event);
     cleanUp();
   }
 
   @Override
   public void onLeftApplication() {
-    mDidClick = true;
   }
 
   @Override

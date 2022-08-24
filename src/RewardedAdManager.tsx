@@ -2,8 +2,14 @@ import { NativeModules } from 'react-native';
 
 const { RewardedAdManager } = NativeModules;
 
+interface RewardedResp {
+  amount: bigint;
+  type: string;
+  click: boolean;
+}
+
 export default {
-  showAd(blockId: string): Promise<boolean> {
-    return RewardedAdManager.showAd(blockId);
+  showAd(adUnitId: string): Promise<RewardedResp> {
+    return RewardedAdManager.showAd(adUnitId);
   },
 };

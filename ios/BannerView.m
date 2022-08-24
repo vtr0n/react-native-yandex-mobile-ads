@@ -17,33 +17,33 @@
     [self createViewIfCan];
 }
 
-- (void)setBlockId:(NSString *)blockId
+- (void)setAdUnitId:(NSString *)adUnitId
 {
-    _blockId = blockId;
+    _adUnitId = adUnitId;
     [self createViewIfCan];
 }
 
 
 - (void)createViewIfCan
 {
-    if (!_blockId || !_size) {
+    if (!_adUnitId || !_size) {
         return;
     }
-    
+
     if (_adView) {
         [_adView removeFromSuperview];
     }
-    
+
     YMAAdSize *adSize = [YMAAdSize fixedSizeWithCGSize: [self getSize: _size]];
-    YMAAdView *adView = [[YMAAdView alloc] initWithBlockID:_blockId adSize:adSize];
-    
+    YMAAdView *adView = [[YMAAdView alloc] initWithAdUnitID:_adUnitId adSize:adSize];
+
     adView.frame = CGRectMake(0, 0, adView.bounds.size.width, adView.bounds.size.height);
     adView.delegate = self;
-    
+
     [adView loadAd];
-    
+
     [self addSubview:adView];
-    
+
     _adView = adView;
 }
 
@@ -64,7 +64,7 @@
     } else if ([size isEqualToString:@"BANNER_728x90"]) {
         return YMAAdSizeBanner_728x90;
     }
-    
+
     return YMAAdSizeBanner_240x400;
 }
 

@@ -28,7 +28,7 @@ RCT_EXPORT_MODULE(RewardedAdManager)
 }
 
 RCT_EXPORT_METHOD(
-                  showAd:(NSString *)blockId
+                  showAd:(NSString *)adUnitId
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject
                   )
@@ -39,7 +39,7 @@ RCT_EXPORT_METHOD(
     _resolve = resolve;
     _reject = reject;
 
-    _rewardedAd = [[YMARewardedAd alloc] initWithBlockID:blockId];
+    _rewardedAd = [[YMARewardedAd alloc] initWithAdUnitID:adUnitId];
     _rewardedAd.delegate = self;
     _showWhenLoaded = true;
 
@@ -75,16 +75,23 @@ RCT_EXPORT_METHOD(
 
 - (void)rewardedAdDidDisappear:(nonnull YMARewardedAd *)rewardedAd;
 {
-    _resolve(@(_didClick));
-
     [self cleanUpAd];
 }
 
 - (void)rewardedAdDidReward:(nonnull YMARewardedAd *)rewardedAd;
 {
-    _resolve(@(_didClick));
-
     [self cleanUpAd];
+}
+
+- (void)rewardedAd:(YMARewardedAd *)rewardedAd didReward:(id<YMAReward>)reward;
+{
+    NSDictionary *resp = @{
+        @"amount": @(reward.amount),
+        @"type": reward.type,
+        @"click": @(_didClick)
+    };
+
+    _resolve(resp);
 }
 
 - (void)bridgeDidForeground:(NSNotification *)notification

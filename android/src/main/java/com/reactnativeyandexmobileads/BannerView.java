@@ -5,6 +5,7 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.LifecycleEventListener;
@@ -18,12 +19,13 @@ import com.yandex.mobile.ads.banner.BannerAdEventListener;
 import com.yandex.mobile.ads.banner.BannerAdView;
 import com.yandex.mobile.ads.common.AdRequest;
 import com.yandex.mobile.ads.common.AdRequestError;
+import com.yandex.mobile.ads.common.ImpressionData;
 
 
 public class BannerView extends ReactViewGroup implements BannerAdEventListener, LifecycleEventListener {
   private ReactContext mContext;
   private BannerAdView myAdView;
-  private String mBlockId;
+  private String mAdUnitId;
   private AdSize mSize;
   private RCTEventEmitter mEventEmitter;
 
@@ -34,8 +36,8 @@ public class BannerView extends ReactViewGroup implements BannerAdEventListener,
     mEventEmitter = mContext.getJSModule(RCTEventEmitter.class);
   }
 
-  public void setBlockId(String blockId) {
-    mBlockId = blockId;
+  public void setAdUnitId(String adUnitId) {
+    mAdUnitId = adUnitId;
     createAdViewIfCan();
   }
 
@@ -45,10 +47,10 @@ public class BannerView extends ReactViewGroup implements BannerAdEventListener,
   }
 
   private void createAdViewIfCan() {
-    if (myAdView == null && mBlockId != null && mSize != null) {
+    if (myAdView == null && mAdUnitId != null && mSize != null) {
       this.myAdView = new BannerAdView(getContext());
 
-      myAdView.setBlockId(mBlockId);
+      myAdView.setAdUnitId(mAdUnitId);
       myAdView.setAdSize(mSize);
 
       // Создание объекта таргетирования рекламы.
@@ -69,6 +71,16 @@ public class BannerView extends ReactViewGroup implements BannerAdEventListener,
 
   @Override
   public void onHostPause() {
+
+  }
+
+  @Override
+  public void onImpression(ImpressionData impressionData)  {
+
+  }
+
+  @Override
+  public void onAdClicked() {
 
   }
 
@@ -110,18 +122,26 @@ public class BannerView extends ReactViewGroup implements BannerAdEventListener,
 
     event.putInt("errorCode", adRequestError.getCode());
     event.putString("errorMessage", adRequestError.getDescription());
-    mEventEmitter.receiveEvent(getId(), "onError", event);
+    sendEvent("onError", event);
 
     myAdView = null;
   }
 
   @Override
   public void onLeftApplication() {
-    mEventEmitter.receiveEvent(getId(), "onLeftApplication", null);
+    sendEvent("onLeftApplication", null);
   }
 
   @Override
   public void onReturnedToApplication() {
-    mEventEmitter.receiveEvent(getId(), "onReturnedToApplication", null);
+    sendEvent("onReturnedToApplication", null);
+  }
+
+  private void sendEvent(String name, @Nullable WritableMap event) {
+    ReactContext reactContext = (ReactContext) getContext();
+    reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(
+      getId(),
+      name,
+      event);
   }
 }

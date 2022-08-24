@@ -12,9 +12,9 @@ import java.util.Map;
 
 public class BannerViewManager extends SimpleViewManager<BannerView> {
 
-  @ReactProp(name = "blockId")
-  public void setBlockId(BannerView view, String blockId) {
-    view.setBlockId(blockId);
+  @ReactProp(name = "adUnitId")
+  public void setAdUnitId(BannerView view, String adUnitId) {
+    view.setAdUnitId(adUnitId);
   }
 
   @ReactProp(name = "size")
