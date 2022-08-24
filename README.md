@@ -1,6 +1,6 @@
 # react-native-yandex-mobile-ads
 
-Implementation Yandex ads for react native
+Implementation Yandex Mobile Ads SDK for react native
 
 ## Installation
 
@@ -37,7 +37,7 @@ $ react-native link react-native-yandex-mobile-ads
 ## Usage
 
 ```tsx
-import { BannerView, InterstitialAdManager } from 'react-native-yandex-mobile-ads';
+import { BannerView, InterstitialAdManager, RewardedAdManager } from 'react-native-yandex-mobile-ads';
 
 <BannerView
   adUnitId={'R-M-DEMO-300x250'}
@@ -48,16 +48,33 @@ import { BannerView, InterstitialAdManager } from 'react-native-yandex-mobile-ad
   onError={(err: any) => console.log('error', err)}
 />
 
-InterstitialAdManager.showAd('R-M-DEMO-320x480')
+InterstitialAdManager.showAd('R-M-DEMO-interstitial')
   .then((didClick: boolean) => {
     console.log('clicked: ' + didClick);
   })
   .catch((error: any) => {
     console.log('error: ' + error);
   });
+
+RewardedAdManager.showAd('R-M-DEMO-rewarded-client-side-rtb')
+  .then((resp) => {
+    const amount = resp.amount;
+    const type = resp.type;
+    const clicked = resp.click;
+    console.log(
+      `amount: ${amount}, type: ${type}, clicked: ${clicked}`
+    );
+  })
+  .catch((error: any) => {
+    console.log('error: ' + error);
+  });
+}}
 ```
 
 ## Contributing
+Mobile Ads SDK [documentation](https://yandex.ru/dev/mobile-ads/doc/intro/about.html)
+You can look at alternative implementations [react-native-admob](https://github.com/sbugert/react-native-admob),
+[react-native-fbads](https://github.com/callstack/react-native-fbads) and implement similar code
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
 

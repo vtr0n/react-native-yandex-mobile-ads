@@ -5,6 +5,7 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.LifecycleEventListener;
@@ -121,18 +122,26 @@ public class BannerView extends ReactViewGroup implements BannerAdEventListener,
 
     event.putInt("errorCode", adRequestError.getCode());
     event.putString("errorMessage", adRequestError.getDescription());
-    mEventEmitter.receiveEvent(getId(), "onError", event);
+    sendEvent("onError", event);
 
     myAdView = null;
   }
 
   @Override
   public void onLeftApplication() {
-    mEventEmitter.receiveEvent(getId(), "onLeftApplication", null);
+    sendEvent("onLeftApplication", null);
   }
 
   @Override
   public void onReturnedToApplication() {
-    mEventEmitter.receiveEvent(getId(), "onReturnedToApplication", null);
+    sendEvent("onReturnedToApplication", null);
+  }
+
+  private void sendEvent(String name, @Nullable WritableMap event) {
+    ReactContext reactContext = (ReactContext) getContext();
+    reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(
+      getId(),
+      name,
+      event);
   }
 }

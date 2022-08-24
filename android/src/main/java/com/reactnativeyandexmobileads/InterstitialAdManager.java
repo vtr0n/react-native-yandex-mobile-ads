@@ -77,7 +77,7 @@ public class InterstitialAdManager extends ReactContextBaseJavaModule implements
 
   @Override
   public void onAdClicked() {
-
+    mDidClick = true;
   }
 
   @Override

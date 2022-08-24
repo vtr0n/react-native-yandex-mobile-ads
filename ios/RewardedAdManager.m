@@ -75,16 +75,23 @@ RCT_EXPORT_METHOD(
 
 - (void)rewardedAdDidDisappear:(nonnull YMARewardedAd *)rewardedAd;
 {
-    _resolve(@(_didClick));
-
     [self cleanUpAd];
 }
 
 - (void)rewardedAdDidReward:(nonnull YMARewardedAd *)rewardedAd;
 {
-    _resolve(@(_didClick));
-
     [self cleanUpAd];
+}
+
+- (void)rewardedAd:(YMARewardedAd *)rewardedAd didReward:(id<YMAReward>)reward;
+{
+    NSDictionary *resp = @{
+        @"amount": @(reward.amount),
+        @"type": reward.type,
+        @"click": @(_didClick)
+    };
+
+    _resolve(resp);
 }
 
 - (void)bridgeDidForeground:(NSNotification *)notification

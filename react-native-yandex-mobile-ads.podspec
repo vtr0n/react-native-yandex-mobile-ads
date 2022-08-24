@@ -11,10 +11,11 @@ Pod::Spec.new do |s|
   s.authors      = package["author"]
 
   s.platforms    = { :ios => "10.0" }
-  s.source       = { :git => "https://github.com/WildSpy/react-native-yandex-mobile-ads.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/vtr0n/react-native-yandex-mobile-ads.git", :tag => "#{s.version}" }
 
   s.source_files = "ios/**/*.{h,m,mm,swift}"
 
   s.dependency "React-Core"
-  s.dependency "YandexMobileAds", "5.1.0"
+  s.dependency 'YandexMobileAds'
+  s.dependency 'YandexMobileAdsInstream'
 end

@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import { Button, StyleSheet, View } from 'react-native';
-import { BannerView } from 'react-native-yandex-mobile-ads';
 import {
+  BannerView,
   InterstitialAdManager,
   RewardedAdManager,
 } from 'react-native-yandex-mobile-ads';
 
-export default class BannerAd extends Component {
+export default class ExampleAd extends Component {
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.bannerContainer}>
           <BannerView
-            adUnitId={'R-M-DEMO-300x250'}
-            size="BANNER_300x250"
+            adUnitId={'R-M-DEMO-300x300'}
+            size={'BANNER_300x300'}
             onLoad={() => console.log('onLoad')}
             onLeftApplication={() => console.log('onLeftApplication')}
             onReturnedToApplication={() =>
@@ -21,34 +21,39 @@ export default class BannerAd extends Component {
             }
             onError={(err: any) => console.log('error', err)}
           />
-          <View style={styles.button}>
-            <Button
-              title={'InterstitialAd'}
-              onPress={() => {
-                InterstitialAdManager.showAd('adf-279013/966533')
-                  .then((didClick: boolean) => {
-                    console.log('clicked: ' + didClick);
-                  })
-                  .catch((error: any) => {
-                    console.log('error: ' + error);
-                  });
-              }}
-            />
-          </View>
-          <View style={styles.button}>
-            <Button
-              title={'RewardedAd'}
-              onPress={() => {
-                RewardedAdManager.showAd('adf-279013/966487')
-                  .then((didClick: boolean) => {
-                    console.log('clicked: ' + didClick);
-                  })
-                  .catch((error: any) => {
-                    console.log('error: ' + error);
-                  });
-              }}
-            />
-          </View>
+        </View>
+        <View style={styles.button}>
+          <Button
+            title={'Interstitial Ad'}
+            onPress={() => {
+              InterstitialAdManager.showAd('R-M-DEMO-interstitial')
+                .then((didClick: boolean) => {
+                  console.log('clicked: ' + didClick);
+                })
+                .catch((error: any) => {
+                  console.log('error: ' + error);
+                });
+            }}
+          />
+        </View>
+        <View style={styles.button}>
+          <Button
+            title={'Rewarded Ad'}
+            onPress={() => {
+              RewardedAdManager.showAd('R-M-DEMO-rewarded-client-side-rtb')
+                .then((resp) => {
+                  const amount = resp.amount;
+                  const type = resp.type;
+                  const clicked = resp.click;
+                  console.log(
+                    `amount: ${amount}, type: ${type}, clicked: ${clicked}`
+                  );
+                })
+                .catch((error: any) => {
+                  console.log('error: ' + error);
+                });
+            }}
+          />
         </View>
       </View>
     );
@@ -61,8 +66,10 @@ let styles = StyleSheet.create({
   },
   bannerContainer: {
     marginVertical: 10,
+    alignItems: 'center',
   },
   button: {
     margin: 10,
+    borderWidth: 1,
   },
 });

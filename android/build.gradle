@@ -19,9 +19,9 @@ def safeExtGet(prop, fallback) {
 
 android {
     compileSdkVersion safeExtGet('YandexMobileAds_compileSdkVersion', 31)
-    buildToolsVersion safeExtGet('YandexMobileAds_buildToolsVersion', '29.0.2')
+    buildToolsVersion safeExtGet('YandexMobileAds_buildToolsVersion', '31.0.0')
     defaultConfig {
-        minSdkVersion safeExtGet('YandexMobileAds_minSdkVersion', 16)
+        minSdkVersion safeExtGet('YandexMobileAds_minSdkVersion', 24)
         targetSdkVersion safeExtGet('YandexMobileAds_targetSdkVersion', 31)
         versionCode 1
         versionName "1.0"
@@ -54,10 +54,8 @@ repositories {
 
 dependencies {
   def mobileadsVersion = safeExtGet('YandexMobileAds_mobileadsVersion', '5.2.0')
-  def mobmetrikaVersion = safeExtGet('YandexMobileAds_mobmetrikaVersion', '4.2.0')
 
   //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"  // From node_modules
   implementation "com.yandex.android:mobileads:$mobileadsVersion"
-  implementation "com.yandex.android:mobmetricalib:$mobmetrikaVersion"
 }

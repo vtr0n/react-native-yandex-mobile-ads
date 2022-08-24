@@ -2,11 +2,13 @@ package com.reactnativeyandexmobileads;
 
 import androidx.annotation.NonNull;
 
+import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.LifecycleEventListener;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.WritableMap;
 import com.yandex.mobile.ads.common.AdRequest;
 import com.yandex.mobile.ads.common.AdRequestError;
 import com.yandex.mobile.ads.rewarded.Reward;
@@ -78,7 +80,7 @@ public class RewardedAdManager extends ReactContextBaseJavaModule implements Rew
 
   @Override
   public void onAdClicked() {
-
+      mDidClick = true;
   }
 
   @Override
@@ -111,13 +113,18 @@ public class RewardedAdManager extends ReactContextBaseJavaModule implements Rew
 
   @Override
   public void onRewarded(@NonNull Reward reward) {
-    mPromise.resolve(mDidClick);
+    WritableMap event = Arguments.createMap();
+
+    event.putInt("amount", reward.getAmount());
+    event.putString("type", reward.getType());
+    event.putBoolean("click", mDidClick);
+
+    mPromise.resolve(event);
     cleanUp();
   }
 
   @Override
   public void onLeftApplication() {
-    mDidClick = true;
   }
 
   @Override
