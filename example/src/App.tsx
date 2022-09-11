@@ -48,7 +48,7 @@ export default class ExampleAd extends Component {
                   const type = resp.type;
                   const clicked = resp.click;
                   console.log(
-                    `amount: ${amount}, type: ${type}, clicked: ${clicked}`,
+                    `amount: ${amount}, type: ${type}, clicked: ${clicked}`
                   );
                 })
                 .catch((error: any) => {
