@@ -37,7 +37,10 @@ $ react-native link react-native-yandex-mobile-ads
 ## Usage
 
 ```tsx
-import { BannerView, InterstitialAdManager, RewardedAdManager } from 'react-native-yandex-mobile-ads';
+import { MobileAds, BannerView, InterstitialAdManager, RewardedAdManager } from 'react-native-yandex-mobile-ads';
+
+// Initialize this at application startup
+MobileAds.initialize({ userConsent: true, locationConsent: true });
 
 <BannerView
   adUnitId={'R-M-DEMO-300x250'}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, StyleSheet, View } from 'react-native';
 import {
+  MobileAds,
   BannerView,
   InterstitialAdManager,
   RewardedAdManager,
@@ -8,6 +9,7 @@ import {
 
 export default class ExampleAd extends Component {
   render() {
+    MobileAds.initialize({ userConsent: true, locationConsent: true });
     return (
       <View style={styles.container}>
         <View style={styles.bannerContainer}>
@@ -46,7 +48,7 @@ export default class ExampleAd extends Component {
                   const type = resp.type;
                   const clicked = resp.click;
                   console.log(
-                    `amount: ${amount}, type: ${type}, clicked: ${clicked}`
+                    `amount: ${amount}, type: ${type}, clicked: ${clicked}`,
                   );
                 })
                 .catch((error: any) => {
@@ -63,6 +65,7 @@ export default class ExampleAd extends Component {
 let styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
+    marginTop: 50,
   },
   bannerContainer: {
     marginVertical: 10,
