@@ -185,10 +185,10 @@ PODS:
     - React-cxxreact (= 0.63.4)
     - React-jsi (= 0.63.4)
   - React-jsinspector (0.63.4)
-  - react-native-yandex-mobile-ads (0.3.6):
+  - react-native-yandex-mobile-ads (0.4.0):
     - React-Core
-    - YandexMobileAds
-    - YandexMobileAdsInstream
+    - YandexMobileAds (= 5.2.1)
+    - YandexMobileAdsInstream (= 0.12.0)
   - React-RCTActionSheet (0.63.4):
     - React-Core/RCTActionSheetHeaders (= 0.63.4)
   - React-RCTAnimation (0.63.4):
@@ -249,12 +249,12 @@ PODS:
     - React-Core (= 0.63.4)
     - React-cxxreact (= 0.63.4)
     - React-jsi (= 0.63.4)
-  - YandexMobileAds (5.1.0):
-    - YandexMobileAds/Static (= 5.1.0)
-  - YandexMobileAds/Static (5.1.0):
+  - YandexMobileAds (5.2.1):
+    - YandexMobileAds/Static (= 5.2.1)
+  - YandexMobileAds/Static (5.2.1):
     - YandexMobileMetrica (< 5.0.0, >= 4.0.0)
-  - YandexMobileAdsInstream (0.11.0):
-    - YandexMobileAds (~> 5.1.0)
+  - YandexMobileAdsInstream (0.12.0):
+    - YandexMobileAds (~> 5.2.0)
   - YandexMobileMetrica (4.2.0):
     - YandexMobileMetrica/Static (= 4.2.0)
   - YandexMobileMetrica/Static (4.2.0):
@@ -376,7 +376,7 @@ SPEC CHECKSUMS:
   React-jsi: a0418934cf48f25b485631deb27c64dc40fb4c31
   React-jsiexecutor: 93bd528844ad21dc07aab1c67cb10abae6df6949
   React-jsinspector: 58aef7155bc9a9683f5b60b35eccea8722a4f53a
-  react-native-yandex-mobile-ads: 8a789d8457719482b02b0a3954ffb7aab8db921e
+  react-native-yandex-mobile-ads: 5c00a5bdd8d55274d6e8fe587e43de912bce46ff
   React-RCTActionSheet: 89a0ca9f4a06c1f93c26067af074ccdce0f40336
   React-RCTAnimation: 1bde3ecc0c104c55df246eda516e0deb03c4e49b
   React-RCTBlob: a97d378b527740cc667e03ebfa183a75231ab0f0
@@ -387,8 +387,8 @@ SPEC CHECKSUMS:
   React-RCTText: 5c51df3f08cb9dedc6e790161195d12bac06101c
   React-RCTVibration: ae4f914cfe8de7d4de95ae1ea6cc8f6315d73d9d
   ReactCommon: 73d79c7039f473b76db6ff7c6b159c478acbbb3b
-  YandexMobileAds: 45b76c6321cbfaca2527f99ba280a5381a60a7d1
-  YandexMobileAdsInstream: 837123da818502bb467e7f4a6aaf5ce83b006b73
+  YandexMobileAds: 3d7708df615f92815a3acedf9869da46d0b4d65e
+  YandexMobileAdsInstream: 9af68b07d930a9d16b343838ebffe6605ef086a2
   YandexMobileMetrica: f5f9c605eaaba33ff6ab2b6bc3259035ca60ed87
   Yoga: 4bd86afe9883422a7c4028c00e34790f560923d6
 
