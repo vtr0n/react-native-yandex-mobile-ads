@@ -1,5 +1,8 @@
 package com.reactnativeyandexmobileads;
 
+import android.os.Handler;
+import android.os.Looper;
+
 import androidx.annotation.NonNull;
 
 import com.facebook.react.bridge.Arguments;
@@ -36,15 +39,18 @@ public class RewardedAdManager extends ReactContextBaseJavaModule implements Rew
       return;
     }
 
-    ReactApplicationContext reactContext = this.getReactApplicationContext();
-    mRewarded = new RewardedAd(reactContext);
-    mRewarded.setAdUnitId(adUnitId);
-    mRewarded.setRewardedAdEventListener(this);
+    Handler mainHandler = new Handler(Looper.getMainLooper());
+    Runnable myRunnable = () -> {
+      ReactApplicationContext reactContext = this.getReactApplicationContext();
+      mRewarded = new RewardedAd(reactContext);
+      mRewarded.setAdUnitId(adUnitId);
+      mRewarded.setRewardedAdEventListener(this);
+      mRewarded.loadAd(new AdRequest.Builder().build());
+    };
 
     mViewAtOnce = true;
     mPromise = p;
-
-    mRewarded.loadAd(new AdRequest.Builder().build());
+    mainHandler.post(myRunnable);
   }
 
   @Override

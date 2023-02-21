@@ -1,10 +1,11 @@
 package com.reactnativeyandexmobileads;
 
+import android.os.Handler;
+
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
-import com.yandex.mobile.ads.common.InitializationListener;
 import com.yandex.mobile.ads.common.MobileAds;
 
 public class MobileAdsModule extends ReactContextBaseJavaModule {
@@ -20,14 +21,15 @@ public class MobileAdsModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void initialize(ReadableMap configuration) {
-    MobileAds.initialize(getReactApplicationContext(), new InitializationListener() {
-      @Override
-      public void onInitializationCompleted() {
+    Handler mainHandler = new Handler(getReactApplicationContext().getMainLooper());
+    Runnable myRunnable = () -> MobileAds.initialize(getReactApplicationContext(), () -> {
+      MobileAds.initialize(getReactApplicationContext(), () -> {
         MobileAds.setUserConsent(configuration.getBoolean("userConsent"));
         MobileAds.setLocationConsent(configuration.getBoolean("locationConsent"));
         MobileAds.enableLogging(configuration.getBoolean("enableLogging"));
         MobileAds.enableDebugErrorIndicator(configuration.getBoolean("enableDebugErrorIndicator"));
-      }
+      });
     });
+    mainHandler.post(myRunnable);
   }
 }
