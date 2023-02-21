@@ -53,7 +53,7 @@ repositories {
 }
 
 dependencies {
-  def mobileadsVersion = safeExtGet('YandexMobileAds_mobileadsVersion', '5.2.0')
+  def mobileadsVersion = safeExtGet('YandexMobileAds_mobileadsVersion', '5.5.1')
 
   //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"  // From node_modules
