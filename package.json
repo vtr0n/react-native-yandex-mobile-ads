@@ -1,6 +1,6 @@
 {
   "name": "react-native-yandex-mobile-ads",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Implementation Yandex ads for react native",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
