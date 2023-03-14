@@ -6,6 +6,7 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.Promise;
 import com.yandex.mobile.ads.common.MobileAds;
 
 public class MobileAdsModule extends ReactContextBaseJavaModule {
@@ -20,7 +21,7 @@ public class MobileAdsModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void initialize(ReadableMap configuration) {
+  public void initialize(ReadableMap configuration, Promise promise) {
     Handler mainHandler = new Handler(getReactApplicationContext().getMainLooper());
     Runnable myRunnable = () -> MobileAds.initialize(getReactApplicationContext(), () -> {
       MobileAds.initialize(getReactApplicationContext(), () -> {
@@ -28,6 +29,7 @@ public class MobileAdsModule extends ReactContextBaseJavaModule {
         MobileAds.setLocationConsent(configuration.getBoolean("locationConsent"));
         MobileAds.enableLogging(configuration.getBoolean("enableLogging"));
         MobileAds.enableDebugErrorIndicator(configuration.getBoolean("enableDebugErrorIndicator"));
+		promise.resolve(true);
       });
     });
     mainHandler.post(myRunnable);
