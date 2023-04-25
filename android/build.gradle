@@ -7,6 +7,7 @@ buildscript {
 
         dependencies {
             classpath 'com.android.tools.build:gradle:3.5.3'
+            classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10")
         }
     }
 }
@@ -25,7 +26,6 @@ android {
         targetSdkVersion safeExtGet('YandexMobileAds_targetSdkVersion', 31)
         versionCode 1
         versionName "1.0"
-
     }
 
     buildTypes {
@@ -53,7 +53,7 @@ repositories {
 }
 
 dependencies {
-  def mobileadsVersion = safeExtGet('YandexMobileAds_mobileadsVersion', '5.5.1')
+  def mobileadsVersion = safeExtGet('YandexMobileAds_mobileadsVersion', '5.7.0')
 
   //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"  // From node_modules

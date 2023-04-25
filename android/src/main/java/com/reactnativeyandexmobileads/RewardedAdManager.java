@@ -1,7 +1,5 @@
 package com.reactnativeyandexmobileads;
 
-import android.os.Handler;
-import android.os.Looper;
 
 import androidx.annotation.NonNull;
 
@@ -14,10 +12,10 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.WritableMap;
 import com.yandex.mobile.ads.common.AdRequest;
 import com.yandex.mobile.ads.common.AdRequestError;
+import com.yandex.mobile.ads.common.ImpressionData;
 import com.yandex.mobile.ads.rewarded.Reward;
 import com.yandex.mobile.ads.rewarded.RewardedAd;
 import com.yandex.mobile.ads.rewarded.RewardedAdEventListener;
-import com.yandex.mobile.ads.common.ImpressionData;
 
 public class RewardedAdManager extends ReactContextBaseJavaModule implements RewardedAdEventListener, LifecycleEventListener {
 
@@ -38,19 +36,14 @@ public class RewardedAdManager extends ReactContextBaseJavaModule implements Rew
       p.reject("E_FAILED_TO_SHOW", "Only one `showAd` can be called at once");
       return;
     }
-
-    Handler mainHandler = new Handler(Looper.getMainLooper());
-    Runnable myRunnable = () -> {
-      ReactApplicationContext reactContext = this.getReactApplicationContext();
-      mRewarded = new RewardedAd(reactContext);
-      mRewarded.setAdUnitId(adUnitId);
-      mRewarded.setRewardedAdEventListener(this);
-      mRewarded.loadAd(new AdRequest.Builder().build());
-    };
+    ReactApplicationContext reactContext = this.getReactApplicationContext();
+    mRewarded = new RewardedAd(reactContext);
+    mRewarded.setAdUnitId(adUnitId);
+    mRewarded.setRewardedAdEventListener(this);
+    mRewarded.loadAd(new AdRequest.Builder().build());
 
     mViewAtOnce = true;
     mPromise = p;
-    mainHandler.post(myRunnable);
   }
 
   @Override

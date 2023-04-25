@@ -28,7 +28,7 @@ export default class ExampleAd extends Component {
           <Button
             title={'Interstitial Ad'}
             onPress={() => {
-              InterstitialAdManager.showAd('R-M-DEMO-interstitial')
+              InterstitialAdManager.showAd('demo-interstitial-yandex')
                 .then((didClick: boolean) => {
                   console.log('clicked: ' + didClick);
                 })
@@ -42,7 +42,7 @@ export default class ExampleAd extends Component {
           <Button
             title={'Rewarded Ad'}
             onPress={() => {
-              RewardedAdManager.showAd('R-M-DEMO-rewarded-client-side-rtb')
+              RewardedAdManager.showAd('demo-rewarded-yandex')
                 .then((resp) => {
                   const amount = resp.amount;
                   const type = resp.type;
