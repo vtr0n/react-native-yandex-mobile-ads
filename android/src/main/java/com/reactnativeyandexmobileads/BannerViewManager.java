@@ -6,7 +6,7 @@ import com.facebook.react.common.MapBuilder;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
-import com.yandex.mobile.ads.banner.AdSize;
+import com.yandex.mobile.ads.banner.BannerAdSize;
 
 import java.util.Map;
 
@@ -19,30 +19,31 @@ public class BannerViewManager extends SimpleViewManager<BannerView> {
 
   @ReactProp(name = "size")
   public void setSize(BannerView view, String size) {
-    AdSize adSize;
+    BannerAdSize adSize;
     switch (size) {
       case "BANNER_300x250":
-        adSize = AdSize.BANNER_300x250;
+        adSize = BannerAdSize.inlineSize(view.getContext(), 300, 250);
         break;
       case "BANNER_300x300":
-        adSize = AdSize.BANNER_300x300;
+        adSize = BannerAdSize.inlineSize(view.getContext(), 300, 300);
         break;
       case "BANNER_320x50":
-        adSize = AdSize.BANNER_320x50;
+        adSize = BannerAdSize.inlineSize(view.getContext(), 320, 50);
         break;
       case "BANNER_320x100":
-        adSize = AdSize.BANNER_320x100;
+        adSize = BannerAdSize.inlineSize(view.getContext(), 320, 100);
         break;
       case "BANNER_400x240":
-        adSize = AdSize.BANNER_400x240;
+        adSize = BannerAdSize.inlineSize(view.getContext(), 400, 240);
         break;
       case "BANNER_728x90":
-        adSize = AdSize.BANNER_728x90;
+        adSize = BannerAdSize.inlineSize(view.getContext(), 728, 90);
         break;
       default:
-        adSize = AdSize.BANNER_240x400;
+        adSize = BannerAdSize.inlineSize(view.getContext(), 240, 400);
         break;
     }
+
     view.setSize(adSize);
   }
 

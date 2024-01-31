@@ -14,8 +14,8 @@ import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
 import com.facebook.react.views.view.ReactViewGroup;
-import com.yandex.mobile.ads.banner.AdSize;
 import com.yandex.mobile.ads.banner.BannerAdEventListener;
+import com.yandex.mobile.ads.banner.BannerAdSize;
 import com.yandex.mobile.ads.banner.BannerAdView;
 import com.yandex.mobile.ads.common.AdRequest;
 import com.yandex.mobile.ads.common.AdRequestError;
@@ -26,7 +26,7 @@ public class BannerView extends ReactViewGroup implements BannerAdEventListener,
   private ReactContext mContext;
   private BannerAdView myAdView;
   private String mAdUnitId;
-  private AdSize mSize;
+  private BannerAdSize mSize;
   private RCTEventEmitter mEventEmitter;
 
   public BannerView(ThemedReactContext context) {
@@ -41,7 +41,7 @@ public class BannerView extends ReactViewGroup implements BannerAdEventListener,
     createAdViewIfCan();
   }
 
-  public void setSize(AdSize size) {
+  public void setSize(BannerAdSize size) {
     mSize = size;
     createAdViewIfCan();
   }
