@@ -1,6 +1,6 @@
 # react-native-yandex-mobile-ads
 
-Implementation Yandex Mobile Ads SDK for react native
+Unofficial implementation Yandex Mobile Ads SDK for react native
 
 ## Installation
 
