@@ -16,6 +16,6 @@ Pod::Spec.new do |s|
   s.source_files = "ios/**/*.{h,m,mm,swift}"
 
   s.dependency "React-Core"
-  s.dependency 'YandexMobileAds', '5.5.0'
-  s.dependency 'YandexMobileAdsInstream', '0.15.0'
+  s.dependency 'YandexMobileAds', '5.9.1'
+  s.dependency 'YandexMobileAdsInstream', '0.19.0'
 end
