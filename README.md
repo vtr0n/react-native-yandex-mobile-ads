@@ -2,6 +2,9 @@
 
 Unofficial implementation Yandex Mobile Ads SDK for react native
 
+## !!! Deprecated !!!  
+Please, use [the official library](https://github.com/yandexmobile/yandex-ads-react-native-plugin) instead  
+
 ## Installation
 
 Add the package to your project using either yarn:
